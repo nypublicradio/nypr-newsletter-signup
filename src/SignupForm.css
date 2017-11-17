@@ -1,0 +1,65 @@
+.SignupForm {
+  max-width: 270px;
+  width: 100%;
+  margin: 0 auto;
+}
+
+.SignupForm > form > div {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.SignupForm input {
+  flex: 1 1 100%;
+  font-size: 14px;
+  line-height: 1.75;
+  font-family: 'Open Sans', sans-serif;
+  padding: 2px 5px;
+  border: none;
+  margin-bottom: 12px;
+}
+
+.SignupForm input::placeholder {
+  color: black;
+  text-align: center;
+}
+
+.SignupForm button {
+  appearance: none;
+  display: block;
+  flex: 1 1 100%;
+  padding: 3px 0;
+  border: none;
+  background-color: #dcf42c;
+  font-family: "Oswald", sans-serif;
+  font-size: 18px;
+  text-transform: uppercase;
+}
+
+@media only screen and (min-width: 420px) {
+  .SignupForm {
+    max-width: 443px;
+  }
+  
+  .SignupForm input {
+    margin-bottom: 0;
+    font-size: 18px;
+    padding: 5px 10px 5px 20px;
+  }
+
+  .SignupForm input::placeholder {
+    text-align: left;
+  }
+  
+  .SignupForm button {
+    font-size: 22px;
+    padding-left: 15px;
+    padding-right: 15px;
+    flex-grow: 0;
+  }
+  
+  .SignupForm button,
+  .SignupForm input {
+    flex-basis: auto;
+  }
+}
