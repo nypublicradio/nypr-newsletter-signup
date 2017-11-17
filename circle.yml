@@ -46,12 +46,14 @@ jobs:
             if [[ "${CIRCLE_BRANCH}" == "master" ]]; then
               env | sed -n 's/^DEMO_//p' > .env
               export AWS_BUCKET=$DEMO_AWS_BUCKET
+              export AWS_PREFIX=$DEMO_AWS_PREFIX
             elif grep -q "v[0-9]\+\.[0-9]\+\.[0-9]\+" <<< "$CIRCLE_TAG"; then
               env | sed -n 's/^PROD_//p' > .env
               export AWS_BUCKET=$PROD_AWS_BUCKET
+              export AWS_PREFIX=$PROD_AWS_PREFIX
             fi
             yarn build
-            aws s3 sync ./build/ s3://"$AWS_BUCKET"/call-to-action
+            aws s3 sync ./build/ s3://"$AWS_BUCKET"/"$AWS_PREFIX"
             aws s3 cp ./build/index.html s3://"$AWS_BUCKET"/"$AWS_PREFIX"/ --cache-control "max-age=0, no-cache"
 
 workflows:
