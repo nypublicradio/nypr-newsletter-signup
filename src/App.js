@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import SubscribeForm from 'react-mailchimp-subscribe';
+import SubscribeForm from 'nypr-react-mailchimp-subscribe';
 import './App.css';
 import './SignupForm.css';
 import pym from 'pym.js';
@@ -11,8 +11,8 @@ const FORM_PROPS = {
     inputPlaceholder: 'Enter your email',
     btnLabel: 'Sign Up',
     sending: 'Sending...',
-    success: 'Thanks for signing up!',
-    error: 'Looks like there was an error.'
+    success: null,
+    error: null
   },
   styles: {
     sending: {
