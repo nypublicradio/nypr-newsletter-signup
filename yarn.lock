@@ -4448,6 +4448,13 @@ number-is-nan@^1.0.0:
   version "1.4.3"
   resolved "https://registry.yarnpkg.com/nwmatcher/-/nwmatcher-1.4.3.tgz#64348e3b3d80f035b40ac11563d278f8b72db89c"
 
+nypr-react-mailchimp-subscribe@^1.0.2:
+  version "1.0.2"
+  resolved "https://registry.yarnpkg.com/nypr-react-mailchimp-subscribe/-/nypr-react-mailchimp-subscribe-1.0.2.tgz#fd53cc30dccce0ffaeeb67aa7e4b9fef5d750382"
+  dependencies:
+    jsonp "^0.2.1"
+    prop-types "^15.5.10"
+
 oauth-sign@~0.8.1, oauth-sign@~0.8.2:
   version "0.8.2"
   resolved "https://registry.yarnpkg.com/oauth-sign/-/oauth-sign-0.8.2.tgz#46a6ab7f0aead8deae9ec0565780b7d4efeb9d43"
@@ -5308,13 +5315,6 @@ react-dom@^16.1.1:
 react-error-overlay@^3.0.0:
   version "3.0.0"
   resolved "https://registry.yarnpkg.com/react-error-overlay/-/react-error-overlay-3.0.0.tgz#c2bc8f4d91f1375b3dad6d75265d51cd5eeaf655"
-
-react-mailchimp-subscribe@^1.0.2:
-  version "1.0.2"
-  resolved "https://registry.yarnpkg.com/react-mailchimp-subscribe/-/react-mailchimp-subscribe-1.0.2.tgz#f0d8ceaf7077ee023038dde64386b7c55f9a62ae"
-  dependencies:
-    jsonp "^0.2.1"
-    prop-types "^15.5.10"
 
 react-scripts@1.0.17:
   version "1.0.17"

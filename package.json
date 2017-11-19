@@ -8,7 +8,7 @@
     "query-string": "^5.0.1",
     "react": "^16.1.1",
     "react-dom": "^16.1.1",
-    "react-mailchimp-subscribe": "^1.0.2",
+    "nypr-react-mailchimp-subscribe": "^1.0.2",
     "react-scripts": "1.0.17"
   },
   "scripts": {
