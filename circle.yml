@@ -28,7 +28,7 @@ jobs:
           key: node-deps-{{ checksum "yarn.lock" }}
       - run:
           name: Test
-          command: echo no tests
+          command: yarn test
 
   deploy:
     docker:
