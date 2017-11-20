@@ -2,14 +2,11 @@
   max-width: 270px;
   width: 100%;
   margin: 0 auto;
-}
-
-.SignupForm > form > div {
   display: flex;
   flex-wrap: wrap;
 }
 
-.SignupForm input {
+.SignupForm > input {
   flex: 1 1 100%;
   font-size: 14px;
   line-height: 1.75;
@@ -19,13 +16,14 @@
   margin-bottom: 12px;
 }
 
-.SignupForm input::placeholder {
+.SignupForm > input::placeholder {
   color: black;
   text-align: center;
 }
 
-.SignupForm button {
+.SignupForm > button {
   appearance: none;
+  cursor: pointer;
   display: block;
   flex: 1 1 100%;
   padding: 3px 0;
@@ -34,6 +32,10 @@
   font-family: "Oswald", sans-serif;
   font-size: 18px;
   text-transform: uppercase;
+}
+
+.SignupForm > p {
+  flex-basis: 100%;
 }
 
 @media only screen and (min-width: 420px) {

@@ -11,8 +11,6 @@ const FORM_PROPS = {
     inputPlaceholder: 'Enter your email',
     btnLabel: 'Sign Up',
     sending: 'Sending...',
-    success: null,
-    error: null
   },
   styles: {
     sending: {
@@ -21,14 +19,13 @@ const FORM_PROPS = {
     },
     success: {
       fontSize: 18,
-      color: "green"
+      color: "black"
     },
     error: {
       fontSize: 18,
-      color: "red"
+      color: "black"
     }
   },
-  className: 'SignupForm'
 }
 
 class App extends Component {
@@ -56,7 +53,7 @@ class App extends Component {
       <div className="App">
         <h1 className="App__headline">Stay up-to-date</h1>
         
-        <SubscribeForm {...FORM_PROPS} />
+        <SignupForm {...FORM_PROPS} />
       </div>
     );
   }
