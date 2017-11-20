@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
-import SubscribeForm from 'nypr-react-mailchimp-subscribe';
 import './App.css';
 import './SignupForm.css';
+import SignupForm from './SignupForm';
 import pym from 'pym.js';
 
 const ACTION = 'https://nypublicradio.us5.list-manage.com/subscribe/post?u=4109fdd323aaac7078eadaa8f';

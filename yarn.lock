@@ -4448,13 +4448,6 @@ number-is-nan@^1.0.0:
   version "1.4.3"
   resolved "https://registry.yarnpkg.com/nwmatcher/-/nwmatcher-1.4.3.tgz#64348e3b3d80f035b40ac11563d278f8b72db89c"
 
-nypr-react-mailchimp-subscribe@^1.0.2:
-  version "1.0.2"
-  resolved "https://registry.yarnpkg.com/nypr-react-mailchimp-subscribe/-/nypr-react-mailchimp-subscribe-1.0.2.tgz#fd53cc30dccce0ffaeeb67aa7e4b9fef5d750382"
-  dependencies:
-    jsonp "^0.2.1"
-    prop-types "^15.5.10"
-
 oauth-sign@~0.8.1, oauth-sign@~0.8.2:
   version "0.8.2"
   resolved "https://registry.yarnpkg.com/oauth-sign/-/oauth-sign-0.8.2.tgz#46a6ab7f0aead8deae9ec0565780b7d4efeb9d43"
