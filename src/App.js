@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import './App.css';
-import './SignupForm.css';
 import SignupForm from './SignupForm';
 import pym from 'pym.js';
 

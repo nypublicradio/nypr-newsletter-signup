@@ -1,5 +1,6 @@
 import React, { Component } from "react"
 import jsonp from "jsonp"
+import './SignupForm.css';
 
 const getAjaxUrl = url => url.replace('/post?', '/post-json?')
 
