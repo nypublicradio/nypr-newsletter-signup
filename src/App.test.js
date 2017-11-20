@@ -1,7 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import App from './App';
-import { shallow } from 'enzyme';
+import { mount } from 'enzyme';
 
 it('renders without crashing', () => {
   const div = document.createElement('div');
@@ -10,27 +10,18 @@ it('renders without crashing', () => {
 
 it('renders query params', () => {
   const props = {
-    headline: 'foo',
-    summary: 'bar',
-    callToAction: 'baz',
-    url: 'http://buz.com'
+    mailchimpId: 'foobarbaz'
   };
-  const app = shallow(<App {...props} />);
+  const app = mount(<App {...props} />);
   
-  expect(app.find('.App__headline').text()).toEqual(props.headline);
-  expect(app.find('.App__summary').text()).toEqual(props.summary);
-  expect(app.find('.App__call-out').text()).toEqual(props.callToAction);
-  expect(app.find('.App__call-out').prop('href')).toEqual(props.url);
+  expect(app.find('.SignupForm').prop('action')).toMatch(props.mailchimpId);
 });
 
 it('responds to postMessage', done => {
   const props = {
-    headline: 'foo',
-    summary: 'bar',
-    callToAction: 'baz',
-    url: 'http://buz.com'
+    mailchimpId: 'foobarbaz'
   };
-  const app = shallow(<App />);
+  const app = mount(<App />);
   jest.spyOn(app.instance(), 'listener').mockImplementation(data => {
     expect(data).toEqual(JSON.stringify(props));
     done();
@@ -38,8 +29,3 @@ it('responds to postMessage', done => {
   
   window.postMessage(JSON.stringify(props), '*');
 });
-
-it('shows a preview message', () => {
-  const app = shallow(<App />);
-  expect(app.find('.App__placeholder').text()).toEqual('Fill out the fields and your preview will appear here');
-})
