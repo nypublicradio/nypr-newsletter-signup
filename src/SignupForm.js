@@ -37,9 +37,10 @@ class SubscribeForm extends Component {
   submit(url) {
     jsonp(url, {param: "c", timeout: 2000}, (err, {result, msg} = {}) => {
       if (err) {
+        let msg = err.message === 'Timeout' ? 'Looks like this Mailchimp ID is invalid. Please try again.' : err;
         this.setState({
           status: 'error',
-          msg: err
+          msg 
         });
       } else if (result !== 'success') {
         this.setState({
