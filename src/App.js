@@ -47,16 +47,18 @@ class App extends Component {
     })
   }
   render() {
+    if (!this.state.mailchimpId) {
+      return (
+        <div className="App">
+          <p className="App__placeholder">Fill out the fields and your preview will appear here</p>
+        </div>
+      );
+    }
     FORM_PROPS.action = ACTION + `&id=${this.state.mailchimpId}`;
     return (
       <div className="App">
         <h1 className="App__headline">Stay up-to-date</h1>
-        
-        {this.state.mailchimpId ? 
-          <SignupForm {...FORM_PROPS} />
-        :
-          <p>No Mailchimp ID provided. Please provide a <code>mailchimpId</code> query parameter.</p>
-        }
+        <SignupForm {...FORM_PROPS} />
       </div>
     );
   }

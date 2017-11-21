@@ -21,6 +21,16 @@
   margin-top: 0;
   margin-bottom: 25px;
 }
+
+.App__placeholder {
+  font-size: 18px;
+  color: #999;
+  font-style: italic;
+  max-width: 250px;
+  margin: 0 auto;
+  line-height: 1.5;
+}
+
 @media only screen and (min-width: 420px) {
   .App__headline {
     font-size: 28px;
