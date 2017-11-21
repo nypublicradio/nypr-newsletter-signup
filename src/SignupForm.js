@@ -35,7 +35,7 @@ class SubscribeForm extends Component {
   }
   
   submit(url) {
-    jsonp(url, { param: "c" }, (err, {result, msg}) => {
+    jsonp(url, {param: "c", timeout: 2000}, (err, {result, msg} = {}) => {
       if (err) {
         this.setState({
           status: 'error',
