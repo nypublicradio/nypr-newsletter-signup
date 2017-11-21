@@ -76,9 +76,7 @@ class SubscribeForm extends Component {
           {messages.btnLabel}
         </button>
         
-        {status === "sending" && <p style={styles.sending} dangerouslySetInnerHTML={{ __html: messages.sending }} />}
-        {status === "success" && <p style={styles.success} dangerouslySetInnerHTML={{ __html: messages.success || msg }} />}
-        {status === "error" && <p style={styles.error} dangerouslySetInnerHTML={{ __html: messages.error || msg }} />}
+        <p style={styles[status]} dangerouslySetInnerHTML={ {__html: messages[status] || msg } } />
       </form>
     );
   }
