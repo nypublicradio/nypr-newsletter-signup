@@ -13,15 +13,15 @@ const FORM_PROPS = {
   },
   styles: {
     sending: {
-      fontSize: 18,
+      fontSize: 14,
       color: "auto"
     },
     success: {
-      fontSize: 18,
+      fontSize: 14,
       color: "black"
     },
     error: {
-      fontSize: 18,
+      fontSize: 14,
       color: "black"
     }
   },
