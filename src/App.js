@@ -34,6 +34,8 @@ class App extends Component {
       mailchimpId: this.props.mailchimpId
     };
     
+    window.dataLayer.push({ mailchimpId: this.props.mailchimpId });
+    
     new pym.Child({polling: 200});
   }
   
