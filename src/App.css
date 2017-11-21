@@ -31,7 +31,7 @@
   line-height: 1.5;
 }
 
-@media only screen and (min-width: 420px) {
+@media only screen and (min-width: 481px) {
   .App__headline {
     font-size: 28px;
   }
