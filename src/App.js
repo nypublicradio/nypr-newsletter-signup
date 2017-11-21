@@ -52,7 +52,11 @@ class App extends Component {
       <div className="App">
         <h1 className="App__headline">Stay up-to-date</h1>
         
-        <SignupForm {...FORM_PROPS} />
+        {this.state.mailchimpId ? 
+          <SignupForm {...FORM_PROPS} />
+        :
+          <p>No Mailchimp ID provided. Please provide a <code>mailchimpId</code> query parameter.</p>
+        }
       </div>
     );
   }
