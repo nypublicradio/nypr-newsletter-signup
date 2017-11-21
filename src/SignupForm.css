@@ -4,6 +4,7 @@
   margin: 0 auto;
   display: flex;
   flex-wrap: wrap;
+  position: relative;
 }
 
 .SignupForm > input {
@@ -35,7 +36,9 @@
 }
 
 .SignupForm > p {
-  flex-basis: 100%;
+  position: absolute;
+  width: 100%;
+  top: 40px;
 }
 
 @media only screen and (min-width: 420px) {
