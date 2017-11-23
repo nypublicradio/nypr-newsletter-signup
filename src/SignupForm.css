@@ -35,15 +35,20 @@
   text-transform: uppercase;
 }
 
-.SignupForm > p {
+.SignupForm__message {
   position: absolute;
   width: 100%;
-  top: 40px;
+  top: 70px;
+  font-size: 14px;
 }
 
 @media only screen and (min-width: 481px) {
   .SignupForm {
     max-width: 443px;
+  }
+  
+  .SignupForm__message {
+    top: 40px;
   }
   
   .SignupForm input {
