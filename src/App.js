@@ -10,22 +10,8 @@ const FORM_PROPS = {
     inputPlaceholder: 'Enter your email',
     btnLabel: 'Sign Up',
     sending: 'Sending...',
-  },
-  styles: {
-    sending: {
-      fontSize: 14,
-      color: "auto"
-    },
-    success: {
-      fontSize: 14,
-      color: "black"
-    },
-    error: {
-      fontSize: 14,
-      color: "black"
-    }
-  },
-}
+  }
+};
 
 class App extends Component {
   constructor(props) {

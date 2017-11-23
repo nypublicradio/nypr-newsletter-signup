@@ -57,7 +57,7 @@ class SubscribeForm extends Component {
   }
   
   render() {
-    const { action, messages, styles } = this.props
+    const { action, messages } = this.props
     const { status, msg } = this.state
     return (
       <form className="SignupForm" action={action} method="post" noValidate>
@@ -78,7 +78,7 @@ class SubscribeForm extends Component {
           {messages.btnLabel}
         </button>
         
-        <p style={styles[status]} dangerouslySetInnerHTML={ {__html: messages[status] || msg } } />
+        <p className="SignupForm__message" dangerouslySetInnerHTML={ {__html: messages[status] || msg } } />
       </form>
     );
   }
