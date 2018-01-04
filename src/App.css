@@ -3,11 +3,7 @@
   flex-direction: column;
   justify-content: center;
   text-align: center;
-  padding: 15px 25px;
-}
-
-.embedded .App {
-  min-height: 250px;
+  padding: 30px 25px;
 }
   
 .not-embedded .App {
