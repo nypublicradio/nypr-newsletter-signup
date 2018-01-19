@@ -23,7 +23,8 @@ class App extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      mailchimpId: this.props.mailchimpId
+      mailchimpId: props.mailchimpId,
+      headline: props.headline
     };
 
     if (window.dataLayer) {
@@ -53,7 +54,7 @@ class App extends Component {
     FORM_PROPS.action = ACTION + `&id=${this.state.mailchimpId}`;
     return (
       <div className="App">
-        <h1 className="App__headline">Stay up-to-date</h1>
+        <h1 className="App__headline">{this.state.headline || 'Stay up-to-date'}</h1>
         <SignupForm {...FORM_PROPS} />
       </div>
     );
