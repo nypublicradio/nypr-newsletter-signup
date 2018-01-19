@@ -15,8 +15,6 @@
   font-weight: 600;
   font-size: 22px;
   margin-top: 0;
-  margin-bottom: 25px;
-  line-height: 0.9;
 }
 
 .App__placeholder {
@@ -31,6 +29,5 @@
 @media only screen and (min-width: 481px) {
   .App__headline {
     font-size: 28px;
-    line-height: 0.8;
   }
 }
