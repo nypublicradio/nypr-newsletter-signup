@@ -12,9 +12,14 @@ it('renders query params', () => {
   const props = {
     mailchimpId: 'foobarbaz'
   };
-  const app = mount(<App {...props} />);
-  
+  let app = mount(<App {...props} />);
+
   expect(app.find('.SignupForm').prop('action')).toMatch(props.mailchimpId);
+  expect(app.find('.App__headline').text().trim()).toMatch('Stay up-to-date');
+
+  props.headline = 'Listen Now';
+  app = mount(<App {...props} />);
+  expect(app.find('.App__headline').text().trim()).toMatch(props.headline);
 });
 
 it('responds to postMessage', done => {
