@@ -44,14 +44,15 @@ class App extends Component {
     })
   }
   render() {
-    if (!this.state.mailchimpId) {
+    let { mailchimpId, headline } = this.state;
+    if (!mailchimpId && !headline) {
       return (
         <div className="App">
           <p className="App__placeholder">Fill out the fields and your preview will appear here</p>
         </div>
       );
     }
-    FORM_PROPS.action = ACTION + `&id=${this.state.mailchimpId}`;
+    FORM_PROPS.action = ACTION + `&id=${mailchimpId}`;
     return (
       <div className="App">
         <h1 className="App__headline">{this.state.headline || 'Stay up-to-date'}</h1>
