@@ -19,14 +19,14 @@ class App extends Component {
     this.state = {
       mailchimpId: this.props.mailchimpId
     };
-    
+
     if (window.dataLayer) {
       window.dataLayer.push({ mailchimpId: this.props.mailchimpId });
     }
-    
+
     new pym.Child({polling: 200});
   }
-  
+
   componentDidMount() {
     window.addEventListener('message', ({data, origin}) => {
       if (origin !== process.env.REACT_APP_TOOLKIT_ORIGIN && process.env.NODE_ENV !==  'test') {
@@ -52,7 +52,7 @@ class App extends Component {
       </div>
     );
   }
-  
+
   parse(data) {
     let message = {};
     if (typeof data === 'string') {
@@ -62,7 +62,7 @@ class App extends Component {
     }
     return message;
   }
-  
+
   listener(data) {
     let { query } = this.parse(data);
     this.setState(query);
