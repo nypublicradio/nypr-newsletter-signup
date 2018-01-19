@@ -30,17 +30,17 @@ class SubscribeForm extends Component {
     }
 
     const url = getAjaxUrl(this.props.action) + `&EMAIL=${encodeURIComponent(this.input.value)}`;
-    
+
     this.setState({ status: "sending", msg: null }, this.submit.bind(this, url));
   }
-  
+
   submit(url) {
     jsonp(url, {param: "c", timeout: 2000}, (err, {result, msg} = {}) => {
       if (err) {
         let msg = err.message === 'Timeout' ? 'Looks like this Mailchimp ID is invalid. Please try again.' : err;
         this.setState({
           status: 'error',
-          msg 
+          msg
         });
       } else if (result !== 'success') {
         this.setState({
@@ -55,7 +55,7 @@ class SubscribeForm extends Component {
       }
     });
   }
-  
+
   render() {
     const { action, messages } = this.props
     const { status, msg } = this.state
@@ -77,7 +77,7 @@ class SubscribeForm extends Component {
         >
           {messages.btnLabel}
         </button>
-        
+
         <p className="SignupForm__message" dangerouslySetInnerHTML={ {__html: messages[status] || msg } } />
       </form>
     );

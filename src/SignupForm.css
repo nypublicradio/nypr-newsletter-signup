@@ -46,11 +46,11 @@
   .SignupForm {
     max-width: 443px;
   }
-  
+
   .SignupForm__message {
     top: 40px;
   }
-  
+
   .SignupForm input {
     margin-bottom: 0;
     font-size: 18px;
@@ -60,14 +60,14 @@
   .SignupForm input::placeholder {
     text-align: left;
   }
-  
+
   .SignupForm button {
     font-size: 22px;
     padding-left: 15px;
     padding-right: 15px;
     flex-grow: 0;
   }
-  
+
   .SignupForm button,
   .SignupForm input {
     flex-basis: auto;
