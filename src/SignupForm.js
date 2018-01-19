@@ -60,7 +60,7 @@ class SubscribeForm extends Component {
     const { action, messages } = this.props
     const { status, msg } = this.state
     return (
-      <form className="SignupForm" action={action} method="post" noValidate>
+      <form className={`SignupForm${status ? ' SignupForm--extend' : ''}`} action={action} method="post" noValidate>
         <input
           ref={node => (this.input = node)}
           type="email"

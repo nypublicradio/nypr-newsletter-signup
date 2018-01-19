@@ -7,6 +7,10 @@
   position: relative;
 }
 
+.SignupForm--extend {
+  margin-bottom: 35px;
+}
+
 .SignupForm > input {
   flex: 1 1 100%;
   font-size: 14px;
