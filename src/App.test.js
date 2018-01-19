@@ -26,6 +26,6 @@ it('responds to postMessage', done => {
     expect(data).toEqual(JSON.stringify(props));
     done();
   });
-  
+
   window.postMessage(JSON.stringify(props), '*');
 });
