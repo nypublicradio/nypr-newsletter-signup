@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import './App.css';
 import SignupForm from './SignupForm';
 
+const THEMES = process.env.REACT_APP_THEMES;
 const ACTION = 'https://nypublicradio.us5.list-manage.com/subscribe/post?u=4109fdd323aaac7078eadaa8f';
 
 const FORM_PROPS = {
@@ -31,6 +32,16 @@ class App extends Component {
     this.props.embed.remove();
   }
 
+  componentDidUpdate(props, { brand }) {
+    if (this.state.brand !== brand) {
+      this.updateBrand();
+    }
+  }
+
+  updateBrand() {
+    fetch(`${THEMES}/${this.state.brand}.json`)
+      .then(r => r.json())
+      .then(styles => this.setState({styles}));
   }
   render() {
     let { mailchimpId, headline } = this.state;
