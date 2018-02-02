@@ -26,6 +26,7 @@ class App extends Component {
       mailchimpId: props.mailchimpId,
       headline: props.headline
     };
+    props.embed.onMessage('incoming', this.listener);
 
     if (window.dataLayer) {
       window.dataLayer.push({ mailchimpId: this.props.mailchimpId });
@@ -35,13 +36,6 @@ class App extends Component {
   }
 
   componentDidMount() {
-    window.addEventListener('message', ({data, origin}) => {
-      if (!TOOLKIT_ORIGIN.includes(origin) && process.env.NODE_ENV !==  'test') {
-        return;
-      } else {
-        this.listener(data);
-      }
-    })
   }
   render() {
     let { mailchimpId, headline } = this.state;
