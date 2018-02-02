@@ -14,7 +14,7 @@ const FORM_PROPS = {
   }
 };
 
-class App extends Component {
+export default class NewsletterSignup extends Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -94,5 +94,3 @@ class App extends Component {
     this.setState(query);
   }
 }
-
-export default App;
