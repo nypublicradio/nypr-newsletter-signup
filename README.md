@@ -35,6 +35,4 @@ Name | Description
 `AWS_ACCESS_KEY_ID` | AWS access key id
 `AWS_SECRET_ACCESS_KEY` | AWS secret access key
 `REACT_APP_BUILD` | The build environment for the app. Either `demo` or `prod`.
-`REACT_APP_TOOLKIT_ORIGIN` | The app is configured via [`postMessage`](https://developer.mozilla.org/en-US/docs/Web/API/Window/postMessage), and will only accept messages from the protocol, domain, and port combination specified here.
-
-*Note:* In `demo` environments, `http://localhost:4200` is added to allowed origins from which the app will receive `postMessage` requests. This eases local development on the [toolkit site](https://github.com/nypublicradio/nypr-toolkit).
+`REACT_APP_THEMES` | The absolute URL of the themes bucket. Does not end in a trailing slash.
