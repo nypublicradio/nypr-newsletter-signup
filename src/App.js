@@ -12,12 +12,6 @@ const FORM_PROPS = {
   }
 };
 
-const TOOLKIT_ORIGIN = [process.env.REACT_APP_TOOLKIT_ORIGIN];
-// open up postmessage on demo to ease development
-if (process.env.REACT_APP_BUILD === 'demo') {
-  TOOLKIT_ORIGIN.push('http://localhost:4200');
-}
-
 class App extends Component {
   constructor(props) {
     super(props);
