@@ -1,6 +1,6 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import App from './App';
+import NewsletterSignup from './NewsletterSignup';
 import { mount } from 'enzyme';
 import pym from 'pym.js';
 
