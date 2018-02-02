@@ -71,8 +71,8 @@ class App extends Component {
     return message;
   }
 
-  listener(data) {
-    let { query } = this.parse(data);
+  listener = data => {
+    let query = this.parse(data);
     this.setState(query);
   }
 }
