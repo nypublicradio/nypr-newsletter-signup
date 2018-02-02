@@ -17,12 +17,15 @@ const FORM_PROPS = {
 export default class NewsletterSignup extends Component {
   constructor(props) {
     super(props);
+    let { embed } = props;
     this.state = {
       mailchimpId: props.mailchimpId,
       headline: props.headline,
       styles: {}
     };
-    props.embed.onMessage('incoming', this.listener);
+    if (embed) {
+      embed.onMessage('incoming', this.listener);
+    }
 
     if (window.dataLayer) {
       window.dataLayer.push({ mailchimpId: this.props.mailchimpId });
@@ -30,11 +33,17 @@ export default class NewsletterSignup extends Component {
   }
 
   componentDidMount() {
-    this.props.embed.sendMessage('mounted');
+    let { embed } = this.props;
+    if (embed) {
+      embed.sendMessage('mounted');
+    }
   }
 
   componentWillUnmount() {
-    this.props.embed.remove();
+    let { embed } = this.props;
+    if (embed) {
+      embed.remove();
+    }
   }
 
   componentDidUpdate(props, { brand }) {
