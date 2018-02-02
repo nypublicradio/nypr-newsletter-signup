@@ -69,9 +69,9 @@ class App extends Component {
     }
     FORM_PROPS.action = ACTION + `&id=${mailchimpId}`;
     return (
-      <div className="App">
-        <h1 className="App__headline">{this.state.headline || 'Stay up-to-date'}</h1>
-        <SignupForm {...FORM_PROPS} />
+      <div className="App" style={this.style('body')}>
+        <h1 className="App__headline" style={this.style('body')}>{this.state.headline || 'Stay up-to-date'}</h1>
+        <SignupForm {...FORM_PROPS} buttonStyle={this.style('button')} />
       </div>
     );
   }

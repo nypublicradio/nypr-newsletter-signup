@@ -70,6 +70,7 @@ class SubscribeForm extends Component {
           placeholder={messages.inputPlaceholder}
         />
         <button
+          style={this.props.buttonStyle}
           className="gtm__newsletter"
           disabled={this.state.status === "sending"}
           onClick={this.onSubmit}
