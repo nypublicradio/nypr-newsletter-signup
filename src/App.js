@@ -17,12 +17,13 @@ const FORM_PROPS = {
 export default class NewsletterSignup extends Component {
   constructor(props) {
     super(props);
-    let { embed } = props;
     this.state = {
       mailchimpId: props.mailchimpId,
       headline: props.headline,
       styles: {}
     };
+
+    let { embed } = props;
     if (embed) {
       embed.onMessage('incoming', this.listener);
     }
