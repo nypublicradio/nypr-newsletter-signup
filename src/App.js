@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import './App.css';
 import SignupForm from './SignupForm';
-import pym from 'pym.js';
 
 const ACTION = 'https://nypublicradio.us5.list-manage.com/subscribe/post?u=4109fdd323aaac7078eadaa8f';
 
@@ -31,8 +30,6 @@ class App extends Component {
     if (window.dataLayer) {
       window.dataLayer.push({ mailchimpId: this.props.mailchimpId });
     }
-
-    new pym.Child({polling: 200});
   }
 
   componentDidMount() {
