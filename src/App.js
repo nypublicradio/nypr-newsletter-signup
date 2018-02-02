@@ -30,6 +30,9 @@ class App extends Component {
   }
 
   componentDidMount() {
+    this.props.embed.sendMessage('mounted');
+  }
+
   componentWillUnmount() {
     this.props.embed.remove();
   }
