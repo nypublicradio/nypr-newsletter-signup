@@ -8,21 +8,21 @@ jest.mock('pym.js');
 
 it('renders without crashing', () => {
   const div = document.createElement('div');
-  ReactDOM.render(<App />, div);
+  ReactDOM.render(<NewsletterSignup />, div);
 });
 
 it('renders query params', () => {
   const props = {
     mailchimpId: 'foobarbaz'
   };
-  let app = mount(<App {...props} />);
+  let app = mount(<NewsletterSignup {...props} />);
 
   expect(app.find('.SignupForm').prop('action')).toMatch(props.mailchimpId);
-  expect(app.find('.App__headline').text().trim()).toMatch('Stay up-to-date');
+  expect(app.find('.NewsletterSignup__headline').text().trim()).toMatch('Stay up-to-date');
 
   props.headline = 'Listen Now';
-  app = mount(<App {...props} />);
-  expect(app.find('.App__headline').text().trim()).toMatch(props.headline);
+  app = mount(<NewsletterSignup {...props} />);
+  expect(app.find('.NewsletterSignup__headline').text().trim()).toMatch(props.headline);
 });
 
 describe('pym init', () => {
@@ -36,13 +36,13 @@ describe('pym init', () => {
 
   it('sets up a listener for the `incoming` message', () => {
     let embed = new pym.Parent();
-    mount(<App embed={embed} />);
+    mount(<NewsletterSignup embed={embed} />);
     expect(embed.onMessage).toHaveBeenCalled();
   });
 
   it('it sends the `mounted` message when the component mounts', () => {
     let embed = new pym.Parent();
-    mount(<App embed={embed} />);
+    mount(<NewsletterSignup embed={embed} />);
     expect(embed.sendMessage).toHaveBeenCalled();
   });
 });

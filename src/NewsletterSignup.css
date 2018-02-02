@@ -1,4 +1,4 @@
-.App {
+.NewsletterSignup {
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -6,18 +6,18 @@
   padding: 30px 25px;
 }
 
-.not-embedded .App {
+.not-embedded .NewsletterSignup {
   height: 100vh;
 }
 
-.App__headline {
+.NewsletterSignup__headline {
   font-family: "Oswald", sans-serif;
   font-weight: 600;
   font-size: 22px;
   margin-top: 0;
 }
 
-.App__placeholder {
+.NewsletterSignup__placeholder {
   font-size: 18px;
   color: #999;
   font-style: italic;
@@ -27,7 +27,7 @@
 }
 
 @media only screen and (min-width: 481px) {
-  .App__headline {
+  .NewsletterSignup__headline {
     font-size: 28px;
   }
 }

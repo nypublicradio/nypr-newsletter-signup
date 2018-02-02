@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import './App.css';
+import './NewsletterSignup.css';
 import getattr from 'safe-object';
 import SignupForm from './SignupForm';
 
@@ -75,15 +75,15 @@ export default class NewsletterSignup extends Component {
     let { mailchimpId, headline } = this.state;
     if (!mailchimpId && !headline) {
       return (
-        <div className="App">
-          <p className="App__placeholder">Fill out the fields and your preview will appear here</p>
+        <div className="NewsletterSignup">
+          <p className="NewsletterSignup__placeholder">Fill out the fields and your preview will appear here</p>
         </div>
       );
     }
     FORM_PROPS.action = ACTION + `&id=${mailchimpId}`;
     return (
-      <div className="App" style={this.style('body')}>
-        <h1 className="App__headline" style={this.style('body')}>{this.state.headline || 'Stay up-to-date'}</h1>
+      <div className="NewsletterSignup" style={this.style('body')}>
+        <h1 className="NewsletterSignup__headline" style={this.style('body')}>{this.state.headline || 'Stay up-to-date'}</h1>
         <SignupForm {...FORM_PROPS} buttonStyle={this.style('button')} />
       </div>
     );
