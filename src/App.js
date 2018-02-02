@@ -33,6 +33,10 @@ class App extends Component {
   }
 
   componentDidMount() {
+  componentWillUnmount() {
+    this.props.embed.remove();
+  }
+
   }
   render() {
     let { mailchimpId, headline } = this.state;
