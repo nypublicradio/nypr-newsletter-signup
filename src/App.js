@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import './App.css';
+import getattr from 'safe-object';
 import SignupForm from './SignupForm';
 
 const THEMES = process.env.REACT_APP_THEMES;
@@ -18,7 +19,8 @@ class App extends Component {
     super(props);
     this.state = {
       mailchimpId: props.mailchimpId,
-      headline: props.headline
+      headline: props.headline,
+      styles: {}
     };
     props.embed.onMessage('incoming', this.listener);
 
@@ -43,6 +45,19 @@ class App extends Component {
       .then(r => r.json())
       .then(styles => this.setState({styles}));
   }
+
+  style(path) {
+    let parts = path.split('.');
+    if (parts.length === 1) {
+      // get everything nested under this path
+      return this.state.styles[path];
+    } else {
+      // look for a specific path
+      let key = parts.slice(-1);
+      return { [key]: getattr(this.state, `styles.${path}`) };
+    }
+  }
+
   render() {
     let { mailchimpId, headline } = this.state;
     if (!mailchimpId && !headline) {
