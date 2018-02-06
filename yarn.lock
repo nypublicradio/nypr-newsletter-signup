@@ -4449,8 +4449,8 @@ number-is-nan@^1.0.0:
   resolved "https://registry.yarnpkg.com/nwmatcher/-/nwmatcher-1.4.3.tgz#64348e3b3d80f035b40ac11563d278f8b72db89c"
 
 nypr-widget-base@^1.0.2:
-  version "1.0.4"
-  resolved "https://registry.yarnpkg.com/nypr-widget-base/-/nypr-widget-base-1.0.4.tgz#6bb5b69b252b87411e78407a267c13f0ad6ee3f1"
+  version "1.0.5"
+  resolved "https://registry.yarnpkg.com/nypr-widget-base/-/nypr-widget-base-1.0.5.tgz#896b44d49c3b10299321273990d2c383ca72c9d5"
   dependencies:
     pym.js "^1.3.1"
     query-string "^5.0.1"
@@ -5199,8 +5199,8 @@ query-string@^4.1.0:
     strict-uri-encode "^1.0.0"
 
 query-string@^5.0.1:
-  version "5.0.1"
-  resolved "https://registry.yarnpkg.com/query-string/-/query-string-5.0.1.tgz#6e2b86fe0e08aef682ecbe86e85834765402bd88"
+  version "5.1.0"
+  resolved "https://registry.yarnpkg.com/query-string/-/query-string-5.1.0.tgz#9583b15fd1307f899e973ed418886426a9976469"
   dependencies:
     decode-uri-component "^0.2.0"
     object-assign "^4.1.0"
