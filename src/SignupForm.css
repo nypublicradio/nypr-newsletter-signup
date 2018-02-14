@@ -1,5 +1,4 @@
 .SignupForm {
-  max-width: 270px;
   width: 100%;
   margin: 0 auto;
   display: flex;
@@ -23,20 +22,17 @@
 
 .SignupForm > input::placeholder {
   color: black;
-  text-align: center;
 }
 
 .SignupForm > button {
   appearance: none;
   cursor: pointer;
   display: block;
-  flex: 1 1 100%;
-  padding: 3px 0;
+  padding: 3px 10px;
   border: none;
   background-color: #dcf42c;
   font-family: "Oswald", sans-serif;
   font-size: 18px;
-  text-transform: uppercase;
 }
 
 .SignupForm__message {
@@ -47,10 +43,6 @@
 }
 
 @media only screen and (min-width: 481px) {
-  .SignupForm {
-    max-width: 443px;
-  }
-
   .SignupForm__message {
     top: 40px;
   }
@@ -58,7 +50,7 @@
   .SignupForm input {
     margin-bottom: 0;
     font-size: 18px;
-    padding: 5px 10px 5px 20px;
+    padding: 5px 10px;
   }
 
   .SignupForm input::placeholder {
