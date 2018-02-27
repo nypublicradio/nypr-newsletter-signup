@@ -34,8 +34,11 @@ export default class NewsletterSignup extends WidgetBase {
     FORM_PROPS.action = ACTION + `&id=${mailchimpId}`;
     return (
       <div className="NewsletterSignup" style={this.style('body')}>
-        <h1 className="NewsletterSignup__headline" style={this.style('body')}>{this.state.headline || 'Stay up-to-date'}</h1>
-        <SignupForm {...FORM_PROPS} buttonStyle={this.style('button')} />
+        <div className="NewsletterSignup__wrapper">
+          <span className="NewsletterSignup__accent" style={this.style('accent')}></span>
+          <h1 className="NewsletterSignup__headline" style={this.style('h1')}>{this.state.headline || 'Stay up-to-date'}</h1>
+          <SignupForm {...FORM_PROPS} buttonStyle={this.style('button')} />
+        </div>
       </div>
     );
   }

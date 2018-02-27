@@ -6,12 +6,41 @@
   padding: 30px 25px;
 }
 
+.NewsletterSignup__wrapper {
+  position: relative;
+}
+
+.NewsletterSignup__accent:before {
+  content: '';
+  display: block;
+  max-width: 187px;
+
+  border-top: 5px solid currentColor;
+  border-right: 5px solid transparent;
+  margin-bottom: 30px;
+  margin-left: 5px;
+}
+
+.NewsletterSignup__accent:after {
+  content: '';
+  display: block;
+  height: 0;
+  width: 0;
+  border-left: 5px solid transparent;
+  border-top: 5px solid transparent;
+  border-right: 5px solid transparent;
+  border-bottom: 5px solid currentColor;
+
+  position: absolute;
+  top: -5px;
+}
+
 .not-embedded .NewsletterSignup {
   height: 100vh;
 }
 
 .NewsletterSignup__headline {
-  font-family: "Oswald", sans-serif;
+  font-family: inherit;
   font-weight: 600;
   font-size: 22px;
   margin-top: 0;
