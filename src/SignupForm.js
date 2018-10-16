@@ -11,7 +11,7 @@ function formatLinks(msg) {
     links.forEach(function(link) {
       link.setAttribute('target', '_blank');
     });
-    let div=document.createElement("div");
+    let div = document.createElement("div");
     div.appendChild(dom);
     return div.innerHTML;
   } catch (e) {
