@@ -4,6 +4,17 @@ import './SignupForm.css';
 
 const getAjaxUrl = url => url.replace('/post?', '/post-json?')
 
+function formatLinks(msg) {
+  let dom = document.createRange().createContextualFragment(msg);
+  var links = dom.querySelectorAll("a");
+  links.forEach(function(link) {
+    link.setAttribute('target', '_blank');
+  });
+  let div=document.createElement("div");
+  div.appendChild(dom);
+  return div.innerHTML;
+}
+
 class SubscribeForm extends Component {
   constructor(props) {
     super(props)
@@ -43,14 +54,7 @@ class SubscribeForm extends Component {
           msg
         });
       } else if (result !== 'success') {
-        let dom = document.createRange().createContextualFragment(msg);
-        var links = dom.querySelectorAll("a");
-        links.forEach(function(link) {
-          link.setAttribute('target', '_blank');
-        });
-        let div=document.createElement("div");
-        div.appendChild(dom);
-        let formattedMsg = div.innerHTML;
+        let formattedMsg = formatLinks(msg);
         this.setState({
           status: 'error',
           msg: formattedMsg
