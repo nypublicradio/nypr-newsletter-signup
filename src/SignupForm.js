@@ -43,9 +43,17 @@ class SubscribeForm extends Component {
           msg
         });
       } else if (result !== 'success') {
+        let dom = document.createRange().createContextualFragment(msg);
+        var links = dom.querySelectorAll("a");
+        links.forEach(function(link) {
+          link.setAttribute('target', '_blank');
+        });
+        let div=document.createElement("div");
+        div.appendChild(dom);
+        let formattedMsg = div.innerHTML;
         this.setState({
           status: 'error',
-          msg
+          msg: formattedMsg
         });
       } else {
         this.setState({
@@ -78,7 +86,6 @@ class SubscribeForm extends Component {
         >
           {messages.btnLabel}
         </button>
-
         <p className="SignupForm__message" dangerouslySetInnerHTML={ {__html: messages[status] || msg } } />
       </form>
     );
