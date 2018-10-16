@@ -4,6 +4,21 @@ import './SignupForm.css';
 
 const getAjaxUrl = url => url.replace('/post?', '/post-json?')
 
+function formatLinks(msg) {
+  try {
+    let dom = document.createRange().createContextualFragment(msg);
+    var links = dom.querySelectorAll("a");
+    links.forEach(function(link) {
+      link.setAttribute('target', '_blank');
+    });
+    let div = document.createElement("div");
+    div.appendChild(dom);
+    return div.innerHTML;
+  } catch (e) {
+    return msg;
+  }
+}
+
 class SubscribeForm extends Component {
   constructor(props) {
     super(props)
@@ -43,9 +58,10 @@ class SubscribeForm extends Component {
           msg
         });
       } else if (result !== 'success') {
+        let formattedMsg = formatLinks(msg);
         this.setState({
           status: 'error',
-          msg
+          msg: formattedMsg
         });
       } else {
         this.setState({
@@ -78,7 +94,6 @@ class SubscribeForm extends Component {
         >
           {messages.btnLabel}
         </button>
-
         <p className="SignupForm__message" dangerouslySetInnerHTML={ {__html: messages[status] || msg } } />
       </form>
     );
