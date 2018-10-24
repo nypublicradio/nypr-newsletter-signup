@@ -12,10 +12,10 @@
 
 .SignupForm > input {
   flex: 1 1 100%;
-  font-size: 14px;
+  font-size: 16px;
   line-height: 1.75;
   font-family: 'Open Sans', sans-serif;
-  padding: 2px 5px;
+  padding: 6px 5px;
   border: 1px solid #f1f1f1;
   margin-bottom: 12px;
 }
@@ -65,7 +65,7 @@
   .SignupForm button {
     width: auto;
     margin-bottom: 16px;
-    font-size: 22px;
+    font-size: 20px;
     padding-left: 15px;
     padding-right: 15px;
     flex-grow: 0;
