@@ -16,7 +16,7 @@
   line-height: 1.75;
   font-family: 'Open Sans', sans-serif;
   padding: 2px 5px;
-  border: none;
+  border: 1px solid #f1f1f1;
   margin-bottom: 12px;
 }
 
@@ -25,6 +25,7 @@
 }
 
 .SignupForm > button {
+  width: 100%;
   appearance: none;
   cursor: pointer;
   display: block;
@@ -33,22 +34,26 @@
   background-color: #dcf42c;
   font-family: "Oswald", sans-serif;
   font-size: 18px;
+  margin-bottom: 14px;
+}
+
+.SignupForm > button.disabled {
+  opacity: 0.6;
 }
 
 .SignupForm__message {
-  position: absolute;
   width: 100%;
-  top: 70px;
   font-size: 14px;
 }
 
 @media only screen and (min-width: 481px) {
+
   .SignupForm__message {
-    top: 40px;
+    margin: 0 0 16px 0;
   }
 
   .SignupForm input {
-    margin-bottom: 0;
+    margin-bottom: 16px;
     font-size: 18px;
     padding: 5px 10px;
   }
@@ -58,6 +63,8 @@
   }
 
   .SignupForm button {
+    width: auto;
+    margin-bottom: 16px;
     font-size: 22px;
     padding-left: 15px;
     padding-right: 15px;

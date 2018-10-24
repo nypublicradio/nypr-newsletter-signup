@@ -1,0 +1,84 @@
+.RequiredCheckbox {
+  margin-bottom: 16px;
+  width: 100%;
+}
+
+.RequiredCheckbox__label {
+  display: flex;
+}
+
+.RequiredCheckbox__checkbox {
+  margin: 3px 6px 0 0;
+}
+
+.RequiredCheckbox__text {
+  font-size: 12px;
+  color: rgba(0,0,0,0.55);
+  flex-grow: 1;
+}
+
+.RequiredCheckbox__error {
+  font-size: 14px;
+  margin: 14px 0 0 0;
+}
+
+.RequiredCheckbox__checkbox {
+  /*screenreader only*/
+  border: 0;
+  clip: rect(0,0,0,0);
+  height: 1px;
+  margin: -1px;
+  overflow: hidden;
+  padding: 0;
+  position: absolute;
+  width: 1px;
+}
+
+/* custom checkbox */
+.RequiredCheckbox__custom-checkbox {
+  position: relative;
+  display: block;
+  cursor: pointer;
+  min-width: 18px;
+  height: 18px;
+  margin: 0 8px 0 2px;
+  border: 2px solid rgba(0,0,0,0.55);
+}
+
+/* focus state */
+.RequiredCheckbox__checkbox:focus ~ .RequiredCheckbox__custom-checkbox {
+  outline-width: 2px;
+  outline-style: solid;
+  outline-color: Highlight;
+}
+@media (-webkit-min-device-pixel-ratio:0) { /* only in webkit */
+  .RequiredCheckbox__checkbox:focus ~ .RequiredCheckbox__custom-checkbox {
+    /* mimic webkit native focus styles */
+    outline-width: 5px;
+    outline-color: -webkit-focus-ring-color;
+    outline-style: auto;
+  }
+}
+
+/* error state */
+.RequiredCheckbox__custom-checkbox.error {
+  border-color: #ff0000;
+}
+
+/* custom checkmark */
+.RequiredCheckbox__checkbox:checked ~ .RequiredCheckbox__custom-checkbox:after {
+  content: "";
+  position: absolute;
+  top: 3.5px;
+  left: 2.5px;
+  width: 9px;
+  height: 5px;
+  /* rotate these borders: |__ to make a checkmark shape */
+  border: solid #000000;
+  border-width: 0 0 2px 2px;
+  transform: rotate(-45deg);
+}
+
+@media only screen and (min-width: 481px) {
+
+}
