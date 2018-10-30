@@ -22,16 +22,13 @@ function formatLinks(msg) {
 }
 
 class SubscribeForm extends Component {
-  constructor(props) {
-    super(props);
-    this.handleCheckboxChange = this.handleCheckboxChange.bind(this);
-    this.state = {
-      checkboxChecked: true,
-      submitTried: false,
-      status: null,
-      msg: null
-    };
+  state = {
+    checkboxChecked: true,
+    submitTried: false,
+    status: null,
+    msg: null
   }
+
   onSubmit = e => {
     e.preventDefault()
 
@@ -57,7 +54,7 @@ class SubscribeForm extends Component {
     this.setState({ status: "sending", msg: null }, this.submit.bind(this, url));
   }
 
-  handleCheckboxChange(checked) {
+  handleCheckboxChange = checked => {
     this.setState({checkboxChecked: checked});
   }
 
@@ -87,6 +84,7 @@ class SubscribeForm extends Component {
   render() {
     const { action, messages, optIn, legalMessage } = this.props;
     const { status, msg, checkboxChecked, submitTried } = this.state;
+    const isDisabled = optIn && !checkboxChecked;
     return (
       <form className={`SignupForm${status ? ' SignupForm--extend' : ''}`} action={action} method="post" noValidate>
         <input
@@ -99,7 +97,7 @@ class SubscribeForm extends Component {
         />
         <button
           style={this.props.buttonStyle}
-          className={"gtm__newsletter " + (optIn && !checkboxChecked ? ' disabled' : '')}
+          className={`gtm__newsletter ${isDisabled && 'disabled'}`}
           disabled={this.state.status === "sending"}
           onClick={this.onSubmit}
           type="submit"

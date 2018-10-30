@@ -2,16 +2,12 @@ import React, { Component } from "react"
 import './RequiredCheckbox.css';
 
 class RequiredCheckbox extends Component {
-  constructor(props) {
-    super(props);
-    this.handleChange = this.handleChange.bind(this);
-    this.state = {
-      changed: false,
-      checked: this.props.checked || false,
-    }
+  state = {
+    changed: false,
+    checked: this.props.checked || false
   }
 
-  handleChange(e) {
+  handleChange = e => {
     this.setState({changed: true, checked: e.target.checked});
     this.props.onChange(e.target.checked)
   }
@@ -29,7 +25,7 @@ class RequiredCheckbox extends Component {
             checked={checked}
             className="RequiredCheckbox__checkbox"
             onChange={this.handleChange} />
-            <span className={"RequiredCheckbox__custom-checkbox " + (hasError ? 'error' : '')}></span>
+            <span className={`RequiredCheckbox__custom-checkbox ${hasError && 'error'}`}></span>
           <div className="RequiredCheckbox__text" dangerouslySetInnerHTML={{__html:message}} />
         </label>
         {hasError && 
