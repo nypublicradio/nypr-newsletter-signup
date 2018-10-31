@@ -2,6 +2,7 @@ import React from 'react';
 import './NewsletterSignup.css';
 import SignupForm from './SignupForm';
 import WidgetBase from 'nypr-widget-base';
+import sanitizeHtml from 'sanitize-html';
 
 const ACTION = 'https://nypublicradio.us5.list-manage.com/subscribe/post?u=4109fdd323aaac7078eadaa8f';
 
@@ -13,6 +14,31 @@ const FORM_PROPS = {
   }
 };
 
+const linkify = function(text) {
+  // sanitize html coming from the embed string
+  let cleanText = sanitizeHtml(text, {allowedTags: [], allowedAttributes: []});
+  // inject a tags for our links
+  let officialLinks = [
+    {
+     tag:   '{WNYC_TERMS}',
+     title: 'Terms of Use',
+     url:   'https://www.wnyc.org/terms/'
+    }, {
+     tag:   '{PROPUBLICA_PRIVACY}',
+     title: 'Privacy Policy',
+     url:   'https://www.propublica.org/legal/'
+    }
+  ];
+  let urlMatcher = new RegExp("(\\s?)((http|https)://[^\\s<]+[^\\s<.)])", "gim");
+  let results = cleanText.replace(urlMatcher, (match, whitespace, url) => {
+    return `${whitespace}<a href="${encodeURI(url)}" target="_blank" rel="noopener">${url}</a>`;
+  });
+  officialLinks.forEach(({tag, title, url}) => {
+    results = results.replace(tag, `<a href="${url}" target="_blank" rel="noopener">${title}</a>`)
+  })
+  return results
+}
+
 export default class NewsletterSignup extends WidgetBase {
   constructor(props) {
     super(props);
@@ -23,7 +49,9 @@ export default class NewsletterSignup extends WidgetBase {
   }
 
   render() {
-    let { mailchimpId, headline } = this.state;
+    let { mailchimpId, headline, optIn, legalText} = this.state;
+    let legalMessage = linkify(legalText);
+
     if (!mailchimpId && !headline) {
       return (
         <div className="NewsletterSignup">
@@ -37,7 +65,7 @@ export default class NewsletterSignup extends WidgetBase {
         <div className="NewsletterSignup__wrapper">
           <span className="NewsletterSignup__accent" style={this.style('accent')}></span>
           <h1 className="NewsletterSignup__headline" style={this.style('h1')}>{this.state.headline || 'Stay up-to-date'}</h1>
-          <SignupForm {...FORM_PROPS} buttonStyle={this.style('button')} />
+          <SignupForm {...FORM_PROPS} buttonStyle={this.style('button')} optIn={optIn} legalMessage={legalMessage} />
         </div>
       </div>
     );

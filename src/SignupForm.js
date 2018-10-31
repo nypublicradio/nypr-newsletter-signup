@@ -1,4 +1,5 @@
 import React, { Component } from "react"
+import RequiredCheckbox from './RequiredCheckbox';
 import jsonp from "jsonp"
 import './SignupForm.css';
 
@@ -10,6 +11,7 @@ function formatLinks(msg) {
     var links = dom.querySelectorAll("a");
     links.forEach(function(link) {
       link.setAttribute('target', '_blank');
+      link.setAttribute('rel', 'noopener');
     });
     let div = document.createElement("div");
     div.appendChild(dom);
@@ -20,16 +22,17 @@ function formatLinks(msg) {
 }
 
 class SubscribeForm extends Component {
-  constructor(props) {
-    super(props)
-    this.state = {
-      status: null,
-      msg: null
-    }
+  state = {
+    checkboxChecked: true,
+    submitTried: false,
+    status: null,
+    msg: null
   }
+
   onSubmit = e => {
     e.preventDefault()
 
+    this.setState({submitTried: true});
     if (!this.input.value) {
       this.setState({
         status: 'error',
@@ -42,11 +45,17 @@ class SubscribeForm extends Component {
         msg: 'Must be a valid email address.'
       });
       return;
+    } else if (this.state.optIn && !this.state.checkboxChecked) {
+      return;
     }
 
     const url = getAjaxUrl(this.props.action) + `&EMAIL=${encodeURIComponent(this.input.value)}`;
 
     this.setState({ status: "sending", msg: null }, this.submit.bind(this, url));
+  }
+
+  handleCheckboxChange = checked => {
+    this.setState({checkboxChecked: checked});
   }
 
   submit(url) {
@@ -73,8 +82,9 @@ class SubscribeForm extends Component {
   }
 
   render() {
-    const { action, messages } = this.props
-    const { status, msg } = this.state
+    const { action, messages, optIn, legalMessage } = this.props;
+    const { status, msg, checkboxChecked, submitTried } = this.state;
+    const isDisabled = optIn && !checkboxChecked;
     return (
       <form className={`SignupForm${status ? ' SignupForm--extend' : ''}`} action={action} method="post" noValidate>
         <input
@@ -87,14 +97,24 @@ class SubscribeForm extends Component {
         />
         <button
           style={this.props.buttonStyle}
-          className="gtm__newsletter"
+          className={`gtm__newsletter ${isDisabled && 'disabled'}`}
           disabled={this.state.status === "sending"}
           onClick={this.onSubmit}
           type="submit"
         >
-          {messages.btnLabel}
+        {messages.btnLabel}
         </button>
-        <p className="SignupForm__message" dangerouslySetInnerHTML={ {__html: messages[status] || msg } } />
+        { msg &&
+          <p className="SignupForm__message" dangerouslySetInnerHTML={ {__html: messages[status] || msg } } />
+        }
+        {optIn && 
+          <RequiredCheckbox 
+            message={legalMessage} 
+            onChange={this.handleCheckboxChange} 
+            submitTried={submitTried} 
+            checked={true} 
+            error="You must agree to the terms." />
+        }
       </form>
     );
   }
