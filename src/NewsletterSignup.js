@@ -49,7 +49,11 @@ export default class NewsletterSignup extends WidgetBase {
   }
 
   render() {
+    let defaultLegalText = "By submitting your information, you're agreeing to receive communications from New York Public Radio in accordance with our {WNYC_TERMS}.";
     let { mailchimpId, headline, optIn, legalText} = this.state;
+    let usingCustomText = optIn;
+    legalText = !legalText && !usingCustomText ? defaultLegalText : legalText;
+    console.log('lt', typeof legalText);
     let legalMessage = linkify(legalText);
 
     if (!mailchimpId && !headline) {
@@ -65,7 +69,7 @@ export default class NewsletterSignup extends WidgetBase {
         <div className="NewsletterSignup__wrapper">
           <span className="NewsletterSignup__accent" style={this.style('accent')}></span>
           <h1 className="NewsletterSignup__headline" style={this.style('h1')}>{this.state.headline || 'Stay up-to-date'}</h1>
-          <SignupForm {...FORM_PROPS} buttonStyle={this.style('button')} optIn={optIn} legalMessage={legalMessage} />
+          <SignupForm {...FORM_PROPS} buttonStyle={this.style('button')} legalMessage={legalMessage} />
         </div>
       </div>
     );

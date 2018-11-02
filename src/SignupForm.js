@@ -82,9 +82,9 @@ class SubscribeForm extends Component {
   }
 
   render() {
-    const { action, messages, optIn, legalMessage } = this.props;
+    const { action, messages, legalMessage } = this.props;
     const { status, msg, checkboxChecked, submitTried } = this.state;
-    const isDisabled = optIn && !checkboxChecked;
+    const isDisabled = !checkboxChecked;
     return (
       <form className={`SignupForm${status ? ' SignupForm--extend' : ''}`} action={action} method="post" noValidate>
         <input
@@ -107,14 +107,12 @@ class SubscribeForm extends Component {
         { msg &&
           <p className="SignupForm__message" dangerouslySetInnerHTML={ {__html: messages[status] || msg } } />
         }
-        {optIn && 
-          <RequiredCheckbox 
-            message={legalMessage} 
-            onChange={this.handleCheckboxChange} 
-            submitTried={submitTried} 
-            checked={true} 
-            error="You must agree to the terms." />
-        }
+        <RequiredCheckbox
+          message={legalMessage}
+          onChange={this.handleCheckboxChange}
+          submitTried={submitTried}
+          checked={true}
+          error="You must agree to the terms." />
       </form>
     );
   }
