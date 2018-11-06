@@ -45,7 +45,7 @@ class SubscribeForm extends Component {
         msg: 'Must be a valid email address.'
       });
       return;
-    } else if (this.state.optIn && !this.state.checkboxChecked) {
+    } else if (!this.state.checkboxChecked) {
       return;
     }
 
