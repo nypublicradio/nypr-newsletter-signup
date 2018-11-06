@@ -26,6 +26,6 @@ it('it passes the url to the submit method', done => {
     done();
   });
   
-  form.find('input').instance().value = EMAIL;
+  form.find('input[type="email"]').instance().value = EMAIL;
   form.find('button').simulate('click');
 })

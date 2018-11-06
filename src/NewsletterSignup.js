@@ -14,29 +14,19 @@ const FORM_PROPS = {
   }
 };
 
+const LEGAL_TEXT_FOR_PARTNER = {
+  'None': `By submitting your information, you're agreeing to receive communications from New York Public Radio in accordance with our <a href="https://www.wnyc.org/terms/" target="_blank" rel="noopener">Terms of Use</a>.`,
+  'ProPublica': `By submitting your information, you're agreeing to receive communications from New York Public Radio in accordance with our <a href="https://www.wnyc.org/terms/" target="_blank" rel="noopener">Terms of Use</a> and in accordance with the <a href="https://www.propublica.org/legal/" target="_blank" rel="noopener">Privacy Policy</a> of ProPublica.`,
+}
+
 const linkify = function(text) {
   // sanitize html coming from the embed string
   let cleanText = sanitizeHtml(text, {allowedTags: [], allowedAttributes: []});
-  // inject a tags for our links
-  let officialLinks = [
-    {
-     tag:   '{WNYC_TERMS}',
-     title: 'Terms of Use',
-     url:   'https://www.wnyc.org/terms/'
-    }, {
-     tag:   '{PROPUBLICA_PRIVACY}',
-     title: 'Privacy Policy',
-     url:   'https://www.propublica.org/legal/'
-    }
-  ];
   let urlMatcher = new RegExp("(\\s?)((http|https)://[^\\s<]+[^\\s<.)])", "gim");
   let results = cleanText.replace(urlMatcher, (match, whitespace, url) => {
     return `${whitespace}<a href="${encodeURI(url)}" target="_blank" rel="noopener">${url}</a>`;
   });
-  officialLinks.forEach(({tag, title, url}) => {
-    results = results.replace(tag, `<a href="${url}" target="_blank" rel="noopener">${title}</a>`)
-  })
-  return results
+  return results;
 }
 
 export default class NewsletterSignup extends WidgetBase {
@@ -49,8 +39,16 @@ export default class NewsletterSignup extends WidgetBase {
   }
 
   render() {
-    let { mailchimpId, headline, optIn, legalText} = this.state;
-    let legalMessage = linkify(legalText);
+    let { mailchimpId, headline, partnerOrg='None', legalText=''} = this.state;
+
+    let legalMessage;
+    if (partnerOrg === 'Other') {
+      legalMessage = linkify(legalText);
+    } else if (LEGAL_TEXT_FOR_PARTNER[partnerOrg]) {
+      legalMessage = LEGAL_TEXT_FOR_PARTNER[partnerOrg];
+    } else {
+      legalMessage = LEGAL_TEXT_FOR_PARTNER['None'];
+    }
 
     if (!mailchimpId && !headline) {
       return (
@@ -65,7 +63,7 @@ export default class NewsletterSignup extends WidgetBase {
         <div className="NewsletterSignup__wrapper">
           <span className="NewsletterSignup__accent" style={this.style('accent')}></span>
           <h1 className="NewsletterSignup__headline" style={this.style('h1')}>{this.state.headline || 'Stay up-to-date'}</h1>
-          <SignupForm {...FORM_PROPS} buttonStyle={this.style('button')} optIn={optIn} legalMessage={legalMessage} />
+          <SignupForm {...FORM_PROPS} buttonStyle={this.style('button')} legalMessage={legalMessage} />
         </div>
       </div>
     );
