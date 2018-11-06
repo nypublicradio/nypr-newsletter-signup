@@ -44,7 +44,7 @@ export default class NewsletterSignup extends WidgetBase {
     let legalMessage;
     if (partnerOrg === 'Other') {
       legalMessage = linkify(legalText);
-    } else if(LEGAL_TEXT_FOR_PARTNER[partnerOrg]) {
+    } else if (LEGAL_TEXT_FOR_PARTNER[partnerOrg]) {
       legalMessage = LEGAL_TEXT_FOR_PARTNER[partnerOrg];
     } else {
       legalMessage = LEGAL_TEXT_FOR_PARTNER['None'];
