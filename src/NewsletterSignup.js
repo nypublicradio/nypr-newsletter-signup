@@ -34,7 +34,10 @@ export default class NewsletterSignup extends WidgetBase {
     super(props);
 
     if (window.dataLayer) {
-      window.dataLayer.push({ mailchimpId: this.props.mailchimpId });
+      window.dataLayer.push({
+        mailchimpId: this.props.mailchimpId,
+        mailchimpName: this.props.mailchimpName || ''
+      });
     }
   }
 
