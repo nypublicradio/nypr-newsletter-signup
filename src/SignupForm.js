@@ -67,6 +67,8 @@ class SubscribeForm extends Component {
         });
       } else if (result !== 'success') {
         let formattedMsg = formatLinks(msg);
+        // sometimes the response comes with an error code at the start
+        formattedMsg = formattedMsg.replace(/^\d - /, '');
         this.setState({
           status: 'error',
           msg: formattedMsg
@@ -96,14 +98,14 @@ class SubscribeForm extends Component {
         />
         <button
           style={this.props.buttonStyle}
-          className={`gtm__newsletter ${isDisabled && 'disabled'}`}
+          className={`gtm__newsletter ${isDisabled ? 'disabled' : ''}`}
           disabled={this.state.status === "sending"}
           onClick={this.onSubmit}
           type="submit"
         >
-        {messages.btnLabel}
+          {messages.btnLabel}
         </button>
-        { msg &&
+        {msg &&
           <p className="SignupForm__message" dangerouslySetInnerHTML={ {__html: messages[status] || msg } } />
         }
         <RequiredCheckbox
