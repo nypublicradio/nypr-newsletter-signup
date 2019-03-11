@@ -34,6 +34,7 @@ export default class NewsletterSignup extends WidgetBase {
   constructor(props) {
     super(props);
 
+    // google tag manager
     if (window.dataLayer) {
       window.dataLayer.push({mailchimpId: this.props.mailchimpId});
       if (this.props.mailchimpName) {
@@ -43,7 +44,10 @@ export default class NewsletterSignup extends WidgetBase {
   }
 
   render() {
-    let { mailchimpId, headline, partnerOrg='None', legalText=''} = this.state;
+    // WidgetBase handles receiving updated params
+    // either from the toolkit via iframe postMessage
+    // or pulled in at load from the query string
+    let { mailchimpId, headline, partnerOrg = 'None', legalText = ''} = this.state;
 
     let legalMessage;
     if (partnerOrg === 'Other') {
@@ -54,6 +58,8 @@ export default class NewsletterSignup extends WidgetBase {
       legalMessage = LEGAL_TEXT_FOR_PARTNER['None'];
     }
 
+    // default view for toolkit
+    // if there are no params, show the preview message
     if (!mailchimpId && !headline) {
       return (
         <div className="NewsletterSignup">
@@ -61,6 +67,7 @@ export default class NewsletterSignup extends WidgetBase {
         </div>
       );
     }
+    // update the passed in form props with the user-configured mailchimp list
     FORM_PROPS.action = ACTION + `&id=${mailchimpId}`;
     return (
       <div className="NewsletterSignup" style={this.style('body')}>

@@ -4,6 +4,9 @@ import jsonp from "jsonp"
 import './SignupForm.css';
 
 
+// mailchimp will return an HTML string for certain user states
+// this takes a string and turns it into HTML nodes with links
+// that open in a new window
 function formatLinks(msg) {
   try {
     let dom = document.createRange().createContextualFragment(msg);
@@ -32,6 +35,9 @@ class SubscribeForm extends Component {
     e.preventDefault()
 
     this.setState({submitTried: true});
+
+    // basic validations
+    // we can rely on mailchimp's email validation, but this is quick sanity check
     if (!this.input.value) {
       this.setState({
         status: 'error',
@@ -57,6 +63,8 @@ class SubscribeForm extends Component {
     this.setState({checkboxChecked: checked});
   }
 
+  // the mailchimp REST API's permissions are wide-open read/write, so we don't want it exposed in the browser
+  // the endpoint does accept json-p, so let's use that instead of exposing a superuser API key to the world
   submit(url) {
     jsonp(url, {param: "c", timeout: 2000}, (err, {result, msg} = {}) => {
       if (err) {
@@ -66,6 +74,8 @@ class SubscribeForm extends Component {
           msg
         });
       } else if (result !== 'success') {
+        // set any embedded link tags to open in a new window
+        // e.g. update your subscription preferences
         let formattedMsg = formatLinks(msg);
         // sometimes the response comes with an error code at the start
         formattedMsg = formattedMsg.replace(/^\d - /, '');
