@@ -3,7 +3,6 @@ import RequiredCheckbox from './RequiredCheckbox';
 import jsonp from "jsonp"
 import './SignupForm.css';
 
-const getAjaxUrl = url => url.replace('/post?', '/post-json?')
 
 function formatLinks(msg) {
   try {
@@ -49,7 +48,7 @@ class SubscribeForm extends Component {
       return;
     }
 
-    const url = getAjaxUrl(this.props.action) + `&EMAIL=${encodeURIComponent(this.input.value)}`;
+    const url = `${this.props.action}&EMAIL=${encodeURIComponent(this.input.value)}`;
 
     this.setState({ status: "sending", msg: null }, this.submit.bind(this, url));
   }

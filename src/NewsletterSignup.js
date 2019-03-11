@@ -4,7 +4,8 @@ import SignupForm from './SignupForm';
 import WidgetBase from 'nypr-widget-base';
 import sanitizeHtml from 'sanitize-html';
 
-const ACTION = 'https://nypublicradio.us5.list-manage.com/subscribe/post?u=4109fdd323aaac7078eadaa8f';
+// mailchimp endpoint
+const ACTION = 'https://nypublicradio.us5.list-manage.com/subscribe/post-json?u=4109fdd323aaac7078eadaa8f';
 
 const FORM_PROPS = {
   messages: {
