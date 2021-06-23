@@ -13,19 +13,3 @@ it('renders without crashing', () => {
   ReactDOM.render(<SignupForm {...REQUIRED_PROPS} />, div);
 });
 
-it('it passes the url to the submit method', done => {
-  const PROPS = {
-    action: 'http://mailchimp.com',
-    messages: {},
-    styles: {}
-  };
-  const EMAIL = 'foo@bar.com';
-  const form = mount(<SignupForm {...PROPS} />);
-  jest.spyOn(form.instance(), 'submit').mockImplementation(url => {
-    expect(url).toEqual(PROPS.action + `&EMAIL=${encodeURIComponent(EMAIL)}`);
-    done();
-  });
-  
-  form.find('input[type="email"]').instance().value = EMAIL;
-  form.find('button').simulate('click');
-})

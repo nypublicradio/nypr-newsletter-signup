@@ -1,6 +1,6 @@
 import React, { Component } from "react"
 import RequiredCheckbox from './RequiredCheckbox';
-import jsonp from "jsonp"
+import fetch from 'node-fetch'
 import './SignupForm.css';
 
 
@@ -54,9 +54,7 @@ class SubscribeForm extends Component {
       return;
     }
 
-    const url = `${this.props.action}&EMAIL=${encodeURIComponent(this.input.value)}`;
-
-    this.setState({ status: "sending", msg: null }, this.submit.bind(this, url));
+    this.setState({ status: "sending", msg: null }, this.submit.bind(this, this.input.value, this.props.mailchimpId));
   }
 
   handleCheckboxChange = checked => {
@@ -65,30 +63,33 @@ class SubscribeForm extends Component {
 
   // the mailchimp REST API's permissions are wide-open read/write, so we don't want it exposed in the browser
   // the endpoint does accept json-p, so let's use that instead of exposing a superuser API key to the world
-  submit(url) {
-    jsonp(url, {param: "c", timeout: 2000}, (err, {result, msg} = {}) => {
-      if (err) {
-        let msg = err.message === 'Timeout' ? 'Looks like this Mailchimp ID is invalid. Please try again.' : err;
-        this.setState({
-          status: 'error',
-          msg
+  submit(email, list) {
+    fetch(process.env.REACT_APP_NEWSLETTER_ENDPOINT, {
+      method: "POST",
+      body: JSON.stringify({ email: email, list: list }),
+      headers: { "Content-Type": "application/json" },
+    }).then((res) => {
+      res
+        .json()
+        .then((json) => {
+          if (res.ok) {
+            this.setState({
+              status: "success",
+              msg: json.detail,
+            });
+          } else {
+            throw new Error(json.detail);
+          }
+        })
+        .catch((err) => {
+          let formattedMsg = formatLinks(err.message);
+          // sometimes the response comes with an error code at the start
+          formattedMsg = formattedMsg.replace(/^\d - /, "");
+          this.setState({
+            status: "error",
+            msg: formattedMsg,
+          });
         });
-      } else if (result !== 'success') {
-        // set any embedded link tags to open in a new window
-        // e.g. update your subscription preferences
-        let formattedMsg = formatLinks(msg);
-        // sometimes the response comes with an error code at the start
-        formattedMsg = formattedMsg.replace(/^\d - /, '');
-        this.setState({
-          status: 'error',
-          msg: formattedMsg
-        });
-      } else {
-        this.setState({
-          status: 'success',
-          msg
-        });
-      }
     });
   }
 
