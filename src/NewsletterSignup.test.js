@@ -14,7 +14,6 @@ it('renders query params', () => {
   };
   let app = mount(<NewsletterSignup {...props} />);
 
-  expect(app.find('.SignupForm').prop('action')).toMatch(props.mailchimpId);
   expect(app.find('.NewsletterSignup__headline').text().trim()).toMatch('Stay up-to-date');
 
   props.headline = 'Listen Now';
