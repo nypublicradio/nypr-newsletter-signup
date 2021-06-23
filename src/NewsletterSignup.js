@@ -5,8 +5,6 @@ import WidgetBase from 'nypr-widget-base';
 import sanitizeHtml from 'sanitize-html';
 
 // mailchimp endpoint
-const ACTION = 'https://nypublicradio.us5.list-manage.com/subscribe/post-json?u=4109fdd323aaac7078eadaa8f';
-
 const FORM_PROPS = {
   messages: {
     inputPlaceholder: 'Enter your email',
@@ -68,13 +66,12 @@ export default class NewsletterSignup extends WidgetBase {
       );
     }
     // update the passed in form props with the user-configured mailchimp list
-    FORM_PROPS.action = ACTION + `&id=${mailchimpId}`;
     return (
       <div className="NewsletterSignup" style={this.style('body')}>
         <div className="NewsletterSignup__wrapper">
           <span className="NewsletterSignup__accent" style={this.style('accent')}></span>
           <h1 className="NewsletterSignup__headline" style={this.style('h1')}>{this.state.headline || 'Stay up-to-date'}</h1>
-          <SignupForm {...FORM_PROPS} buttonStyle={this.style('button')} legalMessage={legalMessage} />
+          <SignupForm mailchimpId={mailchimpId} {...FORM_PROPS} buttonStyle={this.style('button')} legalMessage={legalMessage} />
         </div>
       </div>
     );
